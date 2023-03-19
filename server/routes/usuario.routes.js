@@ -8,7 +8,7 @@ module.exports = function (app){
     app.get('/api/usuarios/:id', UsuarioController.getUsuario);
     app.post('/api/usuario/login', UsuarioController.login);
     app.get('/api/usuarios', authenticate, UsuarioController.getAllUsuarios);
-    app.get('/api/usuarios/all', admin , UsuarioController.get_all);
+    app.get('/api/usuarios/all', UsuarioController.get_all);
     app.get("/api/admin", admin, (req, res) => { res.status(200).json({}) })
 
 
