@@ -45,7 +45,25 @@ module.exports.getallpizza = async (request, response) => {
     }
 }
 
+module.exports.deletePizza = async (request, response) => {
+    try {
+        const pizzas = await Pizzeria.deleteOne({ _id: request.params.id })
+        response.json(pizzas);
+    } catch (error) {
+        response.status(400);
+        response.json(error);
+    }
+}
 
 
 
+module.exports.getPizza = async (request, response) => {
+    try {
+        const pizzas = await Pizza.findOne({_id:request.params.id})
+        response.json(pizzas);
+    } catch (error) {
+        response.status(400);
+        response.json(error);
+    }
+}
 

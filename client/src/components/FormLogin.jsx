@@ -65,7 +65,7 @@ const FormLogin = () => {
           </button>
           <Link
             type="submit"
-            className="btn btn-block create-account mx-5"
+            className="btn btn-block create-account"
             to="/register"
           >
             Registrarse
