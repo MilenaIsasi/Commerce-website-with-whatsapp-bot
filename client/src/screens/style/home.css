@@ -1,0 +1,14 @@
+.catalogoinicio{
+    color:  #3a2c20 ;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 40px;
+    font-size: 30px;
+}
+
+.catalogoiniciofondo{
+    margin-top: 20px;
+    height: 100px;
+    background-color: #ebc665 ;
+    border-radius: 100px;
+}
