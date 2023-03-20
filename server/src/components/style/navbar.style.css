@@ -1,0 +1,24 @@
+.navbar-expand-lg .navbar-collapse {
+    display: flex!important;
+    flex-basis: auto;
+    justify-content: flex-end;
+
+}
+.navbar{
+    background-color: #212529;
+}
+
+#navbarnombre{
+    color: white !important;
+
+}
+
+#sesion{
+    font-size:30px;
+    color: orange;
+}
+
+#carrito{
+    font-size:30px;
+    color: orange;
+}

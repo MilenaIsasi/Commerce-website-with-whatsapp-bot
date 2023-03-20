@@ -4,7 +4,7 @@ import NotFound from '../components/NotFound';
 import Register from '../components/Register';
 import Layout from '../layouts/Layout';
 import AddCarrito from '../screens/AddCarrito';
-import { Homescreen } from '../screens/Homescreen';
+import Home from '../screens/Home';
 
 
 export const  router =  createBrowserRouter([
@@ -23,7 +23,7 @@ export const  router =  createBrowserRouter([
             },
             {
                 path:'home',
-                element: <Homescreen />
+                element: <Home />
             },
             {
                 path:'register',

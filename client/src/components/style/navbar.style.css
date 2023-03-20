@@ -4,6 +4,14 @@
     justify-content: flex-end;
 
 }
+.navbar{
+    background-color: #212529;
+}
+
+#navbarnombre{
+    color: white !important;
+
+}
 
 #sesion{
     font-size:30px;

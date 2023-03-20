@@ -1,0 +1,23 @@
+.linkstylo{
+    text-decoration: none;
+    color: white;
+}
+
+#footer{
+    width: auto;
+    display: flex;
+    flex-direction: column;
+
+}
+.politicas{
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.legal{
+    display: flex;
+    flex-direction: column;
+}
