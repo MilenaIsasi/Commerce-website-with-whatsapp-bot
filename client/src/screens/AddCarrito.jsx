@@ -82,32 +82,32 @@ useEffect(() => {
         <div className="title">
           <div className="row">
             <div className="col">
-              <h4>
-                <b>Mis Pedidos</b>
+              <h4 className="carritoletra">
+                <p>Mis Pedidos</p>
               </h4>
             </div>
             <div className="col align-self-center text-right text-muted"></div>
           </div>
         </div>
-        <div className="table-responsive">
+        <div className="table-responsive" >
           <div className="col-md-12">
             {products.length ? (
-              <table className="table">
-                <thead>
+              <table className="table" id="tabla">
+                <thead id="tabla2">
                   <tr>
-                    <th scope="col" className="border-0 bg-light">
+                    <th scope="col" className="border-0">
                       <div className="p-2 px-3 text-uppercase">Producto</div>
                     </th>
-                    <th scope="col" className="border-0 bg-light">
+                    <th scope="col" className="border-0">
                       <div className="py-2 text-uppercase">Cantidad</div>
                     </th>
-                    <th scope="col" className="border-0 bg-light">
+                    <th scope="col" className="border-0">
                       <div className="py-2 text-uppercase">Tamaño</div>
                     </th>
-                    <th scope="col" className="border-0 bg-light">
+                    <th scope="col" className="border-0">
                       <div className="py-2 text-uppercase">Price</div>
                     </th>
-                    <th scope="col" className="border-0 bg-light">
+                    <th scope="col" className="border-0">
                       <div className="py-2 text-uppercase">Remove</div>
                     </th>
                   </tr>
@@ -123,7 +123,6 @@ useEffect(() => {
                         {product.varient}
                       </td>
                       <td className="border-0 align-middle">{product.price}</td>
-
                       <td>
                         <button
                           className="botondelete"
@@ -137,11 +136,11 @@ useEffect(() => {
                 </tbody>
               </table>
             ) : (
-              <p>No existen items en el carrito</p>
+              <p className="carritoletra">No existen items en el carrito</p>
             )}
-            {products.length ? <h3>Total: {total + " Gs"}</h3> : null}
+            {products.length ? <h3 className="carritoletra">Total: {total + " Gs"}</h3> : null}
             {products.length ? (
-              <button onClick={comprarPizzas}>Procesar compra</button>
+              <button onClick={comprarPizzas} className="procesarcompra" >Procesar compra</button>
             ) : null}
           </div>
         </div>

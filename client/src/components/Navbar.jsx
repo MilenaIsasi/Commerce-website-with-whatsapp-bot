@@ -9,9 +9,9 @@ export const Navbar = () => {
 
   return (
     <div>
-      <nav className="navbar navbar-expand-lg d-flex shadow-lg p-3 mb-5 bg-white rounded">
-          <Link  className="navbar-brand" to='/home' style={{ color: '#00000 !important', textDecoration: 'none' }}>
-          🍕 PIZZERIA CODING DOJO
+      <nav className="navbar navbar-expand-lg d-flex shadow-lg p-3 mb-5 rounded" id="navbar">
+          <Link id="navbarnombre" className="navbar-brand" to='/home' style={{ textDecoration: 'none' }}>
+          🍕 PIZZERIA DOJO
           </Link>
         <button
           className="navbar-toggler"
@@ -38,6 +38,7 @@ export const Navbar = () => {
           </ul>
         </div>
       </nav>
+      
     </div>
   );
 };
