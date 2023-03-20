@@ -92,3 +92,13 @@ module.exports.get_all = (req, res) => {
         .then(usuarios => res.json({ message: usuarios }))
         .catch(err => res.status(400).json({ message: err }));
 }
+
+module.exports.deleteUser = async (request, response) => {
+    try {
+        const usuario = await Usuario.deleteOne({ _id: request.params.id })
+        response.json(usuario);
+    } catch (error) {
+        response.status(400);
+        response.json(error);
+    }
+}

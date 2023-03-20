@@ -1,13 +1,14 @@
 import axios from "axios";
 import { useState, useEffect } from 'react';
 
-function useGetPizzas() {
+function useGetUsuarios() {
     const [data, setData] = useState([]);
   
     useEffect(() => {
-      axios.get('/api/usuarios/all')
+      axios.get("http://localhost:8000/api/usuarios")
         .then(response => {
           setData(response.data);
+          console.log(data)
         })
         .catch(error => {
           console.log(error);
@@ -17,4 +18,4 @@ function useGetPizzas() {
     return data;
   }
 
-export default useGetPizzas;
+export default useGetUsuarios;

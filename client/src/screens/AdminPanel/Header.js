@@ -13,15 +13,15 @@ export default function Header() {
     <div className="collapse navbar-collapse" id="navbarNavDropdown">
       <ul className="navbar-nav">
         <li className="nav-item">
-          <a className="nav-link active" aria-current="page" href="#">Inicio</a>
+          <Link to={'adm'} className="nav-link active" aria-current="page">Inicio</Link>
         </li>
         <li className="nav-item dropdown">
           <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Administrar
           </a>
           <ul className="dropdown-menu">
-            <li><Link to={'cpanel/adm/users'} className="dropdown-item">Usuarios</Link></li>
-            <li><Link to={'cpanel/adm/products'} className="dropdown-item">Productos</Link></li>
+            <li><Link to={'adm/users'} className="dropdown-item">Usuarios</Link></li>
+            <li><Link to={'adm/products'} className="dropdown-item">Productos</Link></li>
           </ul>
         </li>
       </ul>

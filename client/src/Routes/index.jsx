@@ -21,10 +21,6 @@ export const  router =  createBrowserRouter([
         element: <Register />
     },
     {
-        path: '/cpanel',
-        element: <AdminPanel />,
-    },
-    {
         path: '/',
         element: <Layout/>,
         errorElement: <NotFound />,
@@ -40,16 +36,20 @@ export const  router =  createBrowserRouter([
         ]
     },
     {
-        path: '/',
+        path: '/cpanel',
         element: <LayoutPanel />,
         errorElement: <NotFound />,
         children: [
             {
-                path:'cpanel/adm/users',
+                path:'adm',
+                element: <AdminPanel />
+            },
+            {
+                path:'adm/users',
                 element: <AdministrarUsuarios />
             },
             {
-                path:'cpanel/adm/products',
+                path:'adm/products',
                 element: <AdministrarProductos />
             },
         ]

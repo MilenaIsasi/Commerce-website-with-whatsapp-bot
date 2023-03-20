@@ -8,6 +8,7 @@ function useGetPizzas() {
       axios.get('http://localhost:8000/getpizzas')
         .then(response => {
           setData(response.data);
+          console.log(data)
         })
         .catch(error => {
           console.log(error);
