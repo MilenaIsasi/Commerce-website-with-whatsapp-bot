@@ -76,7 +76,7 @@ export const Pizza = ({pizza}) => {
             <div style={{ margin: '50px' }} className='shadow-lg p-3 mb-5 rounded' id='fondo'  >
                 <div onClick={handleShow}>
                     <h1 className='nombredepizza'>{pizza.name}</h1>
-                    <img src={pizza.image} className="img-fluid" style={{height:'250px', width:'200px'}} alt='imagen de la pizza correspondiente'/>
+                    <img src={pizza.image} className="img-fluid" style={{height:'300px', width:'300px'}} alt='imagen de la pizza correspondiente'/>
                 </div>
 
             <div className="flex-container">

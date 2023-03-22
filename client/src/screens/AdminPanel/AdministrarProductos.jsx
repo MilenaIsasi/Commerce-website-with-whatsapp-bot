@@ -1,7 +1,7 @@
 import React from 'react';
 import useGetPizzas from './customHooks/useGetPizzas';
 import MUIDataTable from "mui-datatables";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { ExportCsv, ExportPdf } from "@material-table/exporters";
 import axios from 'axios';
@@ -10,6 +10,7 @@ const AdministrarProductos = () => {
 
   const data = useGetPizzas();
   const navigate = useNavigate();
+  const { id } = useParams()
 
   const darkTheme = createTheme({
     palette: {
@@ -31,7 +32,7 @@ const AdministrarProductos = () => {
       axios.get(`http://localhost:8000/api/pizza/${id}`)
       console.log(id)
    } catch {
-      alert("no se ha podido eliminar")
+      console.log("detalles")
    }
   }
 

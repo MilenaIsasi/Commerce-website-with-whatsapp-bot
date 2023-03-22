@@ -78,7 +78,7 @@ useEffect(() => {
           theme="light"
         />
       </div>
-      <div className="col-md-8 cart">
+      <div className="col-md-8 cart" id="contenedor" >
         <div className="title">
           <div className="row">
             <div className="col">

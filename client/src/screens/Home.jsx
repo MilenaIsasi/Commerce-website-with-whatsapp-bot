@@ -3,11 +3,12 @@ import { Carrouselchico } from "../components/carousel/Carrouselchico";
 import Carrouselgrande from "../components/carousel/Carrouselgrande";
 import Footer from "../components/footer/Footer";
 import { ListarPizza } from "./ListaPizzas";
-
+import './style/home.css'
 function Home() {
 
   return (
-    <div className="container">
+    <div id="contenedor">
+    <div>
       <div>
         <Carrouselgrande />
       </div>
@@ -20,6 +21,7 @@ function Home() {
       <div>
         <Footer/>
       </div>
+    </div>
     </div>
   );
 }

@@ -12,3 +12,8 @@
     background-color: #ebc665 ;
     border-radius: 100px;
 }
+
+#contenedor{
+    background: rgb(50,50,50);
+background: radial-gradient(circle, rgba(50,50,50,0.8576680672268908) 100%, rgba(255,255,255,0.196516106442577) 100%);
+}

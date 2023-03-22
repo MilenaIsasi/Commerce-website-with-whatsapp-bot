@@ -9,7 +9,7 @@ export const Navbar = () => {
 
   return (
     <div>
-      <nav className="navbar navbar-expand-lg d-flex shadow-lg p-3 mb-5 rounded" id="navbar">
+      <nav className="navbar navbar-expand-lg d-flex shadow-lg  sticky-top" id="navbar">
           <Link id="navbarnombre" className="navbar-brand" to='/home' style={{ textDecoration: 'none' }}>
           🍕 PIZZERIA DOJO
           </Link>

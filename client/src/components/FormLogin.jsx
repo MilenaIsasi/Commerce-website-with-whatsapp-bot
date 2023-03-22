@@ -82,7 +82,7 @@ const FormLogin = () => {
           <Link to='/'>
           <i className="bi bi-instagram"></i>
           </Link>
-          <Link to='/'>
+          <Link to='https://wa.link/dtlxhb'>
           <i className="bi bi-whatsapp"></i>
           </Link>
         </div>
