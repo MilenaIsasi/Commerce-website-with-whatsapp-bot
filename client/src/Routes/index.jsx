@@ -12,6 +12,12 @@ import AdminPanel from '../screens/AdminPanel/AdminPanel';
 import ProductosAdd from '../screens/AdminPanel/customHooks/ProductoAdd';
 
 
+import AdministrarProductos from '../screens/AdminPanel/AdministrarProductos';
+import AdministrarUsuarios from '../screens/AdminPanel/AdministrarUsuarios';
+import AdminPanel from '../screens/AdminPanel/AdminPanel';
+import Home from '../screens/Home';
+
+
 export const  router =  createBrowserRouter([
     {   path: '/',
         index: true,
