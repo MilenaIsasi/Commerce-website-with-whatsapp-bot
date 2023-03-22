@@ -5,10 +5,18 @@ import Register from '../components/Register';
 import Layout from '../layouts/Layout';
 import LayoutPanel from '../layouts/LayoutPanel';
 import AddCarrito from '../screens/AddCarrito';
+import Home from '../screens/Home';
+import AdministrarProductos from '../screens/AdminPanel/AdministrarProductos';
+import AdministrarUsuarios from '../screens/AdminPanel/AdministrarUsuarios';
+import AdminPanel from '../screens/AdminPanel/AdminPanel';
+import ProductosAdd from '../screens/AdminPanel/customHooks/ProductoAdd';
+
+
 import AdministrarProductos from '../screens/AdminPanel/AdministrarProductos';
 import AdministrarUsuarios from '../screens/AdminPanel/AdministrarUsuarios';
 import AdminPanel from '../screens/AdminPanel/AdminPanel';
 import Home from '../screens/Home';
+
 
 export const  router =  createBrowserRouter([
     {   path: '/',
@@ -61,6 +69,10 @@ export const  router =  createBrowserRouter([
             {
                 path:'adm/products',
                 element: <AdministrarProductos />
+            },
+            {
+                path:'adm/agregar',
+                element: <ProductosAdd />
             },
         ]
     }
