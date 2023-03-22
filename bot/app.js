@@ -22,8 +22,6 @@ const menuAPI = async () => {
 
 
 let nombre;
-let menu;
-let telefono;
 
 const flowFormulario = addKeyword(['Hola', 'Buenas','⬅️ Volver al Inicio'])
     .addAnswer(
