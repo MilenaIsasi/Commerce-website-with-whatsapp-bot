@@ -5,18 +5,10 @@ import Register from '../components/Register';
 import Layout from '../layouts/Layout';
 import LayoutPanel from '../layouts/LayoutPanel';
 import AddCarrito from '../screens/AddCarrito';
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-import Home from '../screens/Home';
-=======
->>>>>>> edfcf25f668878abcae747764a23b70cd3a594d9
 import AdministrarProductos from '../screens/AdminPanel/AdministrarProductos';
 import AdministrarUsuarios from '../screens/AdminPanel/AdministrarUsuarios';
 import AdminPanel from '../screens/AdminPanel/AdminPanel';
-import { Homescreen } from '../screens/Homescreen';
->>>>>>> a0a99cef5e960db1851b44bf1be0a472a86a61fe
-
+import Home from '../screens/Home';
 
 export const  router =  createBrowserRouter([
     {   path: '/',
@@ -59,13 +51,10 @@ export const  router =  createBrowserRouter([
         errorElement: <NotFound />,
         children: [
             {
-<<<<<<< HEAD
                 path:'adm',
                 element: <AdminPanel />
             },
             {
-=======
->>>>>>> edfcf25f668878abcae747764a23b70cd3a594d9
                 path:'adm/users',
                 element: <AdministrarUsuarios />
             },
