@@ -1,4 +1,4 @@
-# trabajo-grupal
+# Trabajo-Grupal
 
 
 Es una página web para una Pizzería, el cual permite al usuario:
