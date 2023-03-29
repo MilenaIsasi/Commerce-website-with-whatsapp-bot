@@ -3,7 +3,6 @@ import useGetPizzas from './customHooks/useGetPizzas';
 import MUIDataTable from "mui-datatables";
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { ExportCsv, ExportPdf } from "@material-table/exporters";
 import axios from 'axios';
 
 const AdministrarProductos = () => {
@@ -70,7 +69,7 @@ const AdministrarProductos = () => {
                 <i className="bi bi-clipboard2"></i>
                 </button>
                 <button className='btn btn-danger ms-2' onClick={() => detalleProducto(tableMeta.rowData[2])}>
-                <i class="bi bi-pencil"></i>
+                <i className="bi bi-pencil"></i>
                 </button>
             </div>
           );
@@ -97,7 +96,7 @@ return (
                       </div>
                     </div>
                     <div className="align-self-center">
-                      <Link to='/data/new' className='btn btn-primary m-2'>Agregar nuevo</Link>
+                      <Link to='/cpanel/adm/agregar' className='btn btn-primary m-2'>Agregar nuevo</Link>
                     </div>
                   </div>
                 </div>

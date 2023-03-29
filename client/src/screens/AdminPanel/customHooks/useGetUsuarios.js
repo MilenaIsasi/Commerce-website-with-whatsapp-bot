@@ -13,7 +13,7 @@ function useGetUsuarios() {
         .catch(error => {
           console.log(error);
         });
-    }, []);
+    }, );
   
     return data;
   }

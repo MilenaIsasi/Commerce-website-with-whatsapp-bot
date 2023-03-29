@@ -5,11 +5,19 @@ import Register from '../components/Register';
 import Layout from '../layouts/Layout';
 import LayoutPanel from '../layouts/LayoutPanel';
 import AddCarrito from '../screens/AddCarrito';
+import Home from '../screens/Home';
+import AdministrarProductos from '../screens/AdminPanel/AdministrarProductos';
+import AdministrarUsuarios from '../screens/AdminPanel/AdministrarUsuarios';
+import AdminPanel from '../screens/AdminPanel/AdminPanel';
+import ProductosAdd from '../screens/AdminPanel/customHooks/ProductoAdd';
+
+
 import AdministrarProductos from '../screens/AdminPanel/AdministrarProductos';
 import AdministrarUsuarios from '../screens/AdminPanel/AdministrarUsuarios';
 import AdminPanel from '../screens/AdminPanel/AdminPanel';
 import ProductDetails from '../screens/AdminPanel/ProductDetails';
 import Home from '../screens/Home';
+
 
 export const  router =  createBrowserRouter([
     {   path: '/',
@@ -54,8 +62,13 @@ export const  router =  createBrowserRouter([
                 element: <AdministrarProductos />
             },
             {
+<<<<<<< HEAD
                 path:'adm/pizza/:id',
                 element: <ProductDetails />
+=======
+                path:'adm/agregar',
+                element: <ProductosAdd />
+>>>>>>> 779b7a20f5c64d373534d3415bf70344975129bf
             },
         ]
     }
