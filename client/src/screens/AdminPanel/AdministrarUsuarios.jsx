@@ -72,7 +72,7 @@ return (
                       </div>
                     </div>
                     <div className="align-self-center">
-                      <Link to='/data/new' className='btn btn-primary m-2'>Agregar nuevo</Link>
+                      <Link to='/cpanel/adm' className='btn btn-primary m-2'>Volver</Link>
                     </div>
                   </div>
                 </div>

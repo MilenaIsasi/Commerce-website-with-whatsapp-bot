@@ -39,9 +39,7 @@ const ProductosAdd = () => {
 
   return (
     <>
-        <h1>Agregar Nuevos Productos</h1>
-        <hr />
-        <div className="row">
+        <div className="row" style={{display:"flex", justifyContent:"center"}}>
             <div className="col-lg-4 col-sm-12 col-md-6">
                 <ProductoForm 
                   initialValues={initialValues}

@@ -1,33 +1,68 @@
 import axios from "axios";
 import { useFormik } from "formik";
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Swal from 'sweetalert2'
 
-const ProductosForm = () => {
+const EditarProductos = () => {
   const navigate = useNavigate();
 
   const backToHome = () => {
     navigate("/cpanel/adm/products");
   };
 
-  const { handleSubmit, handleChange, resetForm } = useFormik({
-    initialValues: {
-      name: "",
-      image: "",
-      prices: [
-        {
-          personal: 45000,
-          mediano: 60000,
-          grande: 70000,
-        },
-      ],
-      category: "",
-      description: "",
-      varients: ["personal", "mediano", "grande"],
-    },
+  const { id } = useParams();
+  const [producto, setProducto] = useState("");
+
+  useEffect(() => {
+    const obtenerProducto = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8000/api/pizza/${id}`);
+        console.log(response.data);
+        setProducto({
+          name: response.data.name,
+          image: response.data.image,
+          category: response.data.category,
+          description: response.data.description,
+        });
+        console.log(producto)
+      } catch (error) {
+        console.error("Error al obtener la pizza:", error);
+      }
+    };
+    obtenerProducto();
+  }, [id]);
+
+
+  const actualizarProducto = async(values, actions) => {
+
+    try {
+        const respuesta = await axios.put(`http://localhost:8000/api/pizza/${id}`, values);
+        console.log(respuesta);
+        if (respuesta.status === 200){
+            Swal.fire({
+                icon: 'success',
+                title: 'GENIAL!!!',
+                text: `Se ha actualizado ${respuesta.data.name} perfectamente!`,
+            });
+
+            navigate('/personas');
+        }
+    } catch (error) {
+        console.log(error);
+        Swal.fire({
+            icon: 'error',
+            title: 'Ops que mal!!!',
+            text: `Error: ${error?.response?.data?.message || error.message}`,
+        })
+    }
+  }
+
+
+  const { handleSubmit, handleChange } = useFormik({
+
     onSubmit: (values, actions) => {
       axios.post("http://localhost:8000/getpizzas", values)
         .then((resp) => {
@@ -36,7 +71,7 @@ const ProductosForm = () => {
             Swal.fire({
               icon: 'success',
               title: 'GENIAL!!!',
-              text: `Se ha agregaddo ${resp.data.name} Correctamente!`,
+              text: `Se ha agregado ${resp.data.name} Correctamente!`,
           });
           navigate('/cpanel/adm');
           } else {
@@ -77,6 +112,7 @@ const ProductosForm = () => {
               placeholder="Nombre de la Pizza"
               name="name"
               onChange={handleChange}
+              value={producto.name}
             />
             <input
               className="form-control item mt-4"
@@ -85,6 +121,7 @@ const ProductosForm = () => {
               placeholder="Url de la pizza"
               name="image"
               onChange={handleChange}
+              value={producto.image}
             />
             <select
               className="form-control item mt-4"
@@ -92,7 +129,7 @@ const ProductosForm = () => {
               name="category"
               onChange={handleChange}
             >
-              <option value="">Selecciona una opción</option>
+              <option value={producto.category}>{producto.category}</option>
               <option value="vegetariano">Vegetariano</option>
               <option value="no vegetariano">No vegetariano</option>
             </select>
@@ -103,10 +140,11 @@ const ProductosForm = () => {
               placeholder="description"
               name="description"
               onChange={handleChange}
+              value={producto.description}
             />
 
-            <button type="submit" className="btn btn-block create-account mt-4">
-              Agregar Producto
+            <button onSubmit={actualizarProducto} className="btn btn-block create-account mt-4">
+              Editar Producto
             </button>
             <button className="btn mt-4 mx-2" onClick={backToHome}>
               Volver
@@ -118,4 +156,4 @@ const ProductosForm = () => {
   );
 };
 
-export default ProductosForm;
+export default EditarProductos;

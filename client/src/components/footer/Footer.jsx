@@ -44,7 +44,7 @@ export default function Footer() {
       <div className='text-center p-3' style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)' }}>
         © 2022 Copyright: 
          @isasimilena28@gmail.com // @ruli@gmail.com
-         | <Link to={'/cpanel'}><i class="bi bi-person-rolodex"></i></Link>
+         | <Link to={'/cpanel/adm'}><i class="bi bi-person-rolodex"></i></Link>
       </div>
       </MDBContainer>
       </div>

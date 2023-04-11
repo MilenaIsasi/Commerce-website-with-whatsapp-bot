@@ -6,11 +6,32 @@ import axios from "axios";
 
 const FormLogin = () => {
 
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
-  // const [formErrors, setFormErrors] = useState({});
-
   const navigate = useNavigate();
+
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const onSubmit = async (values) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:8000/api/usuario/login",
+        values,
+        { withCredentials: true }
+      );
+      console.log(response);
+      if (response.data === 200) {
+        console.log(response);
+      } else {
+        navigate("/home");
+      }
+    } catch (error) {
+      if (error.response.status === 400) {
+        setErrorMessage(" * Datos inválidos");
+      } else {
+        setErrorMessage(" * Datos inválidos");
+      }
+      console.error(error);
+    }
+  };
 
 
   const { handleSubmit, handleChange } = useFormik({
@@ -18,17 +39,8 @@ const FormLogin = () => {
       email: "",
       password: "",
     },
-    onSubmit: (values) => {
-      const resp = axios.post('http://localhost:8000/api/usuario/login', values, { withCredentials: true })
-      console.log(resp)
-      if(resp.data === 200){
-        console.log(resp)
-      }else{
-        navigate('/home')
-      }
-    },
+    onSubmit,
   });
-
 
   return (
     <div className="registration-form">
@@ -57,10 +69,11 @@ const FormLogin = () => {
             name="password"
             onChange={handleChange}
           />
+                  {errorMessage && <p className="text-danger">{errorMessage}</p>}
         </div>
         
         <div className="form-group">
-          <button type="submit" className="btn btn-block create-account">
+          <button type="submit" className="btn btn-block create-account mx-3">
             Iniciar Sesion
           </button>
           <Link
@@ -82,7 +95,7 @@ const FormLogin = () => {
           <Link to='/'>
           <i className="bi bi-instagram"></i>
           </Link>
-          <Link to='https://wa.link/dtlxhb'>
+          <Link to='/'>
           <i className="bi bi-whatsapp"></i>
           </Link>
         </div>
