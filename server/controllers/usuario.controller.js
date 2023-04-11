@@ -5,16 +5,24 @@ const jwt = require("jsonwebtoken");
 
 
 //CREAR USUARIO
+
+
 module.exports.createUser = async (request, response) => {
-    try {
-        const usuario= new Usuario(request.body);
-        await usuario.save();
-        response.json({msg:"Usuario Registrado", usuario});
-    } catch (error) {
-        response.status(400);
-        response.json(error);
+  try {
+    const { email } = request.body;
+    const existingUser = await Usuario.findOne({ email });
+
+    if (existingUser) {
+      return response.status(400).json({ msg: 'Ya existe un usuario con este email.' });
     }
-}
+
+    const usuario = new Usuario(request.body);
+    await usuario.save();
+    response.json({ msg: 'Usuario registrado', usuario });
+  } catch (error) {
+    response.status(400).json(error);
+  }
+};
 
 module.exports.getUsuario = async (request, response)=>{
     try{
