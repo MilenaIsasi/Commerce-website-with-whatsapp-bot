@@ -1,14 +1,16 @@
 import React from 'react';
 import useGetPizzas from './customHooks/useGetPizzas';
 import MUIDataTable from "mui-datatables";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import axios from 'axios';
+import Swal from 'sweetalert2'
 
 const AdministrarProductos = () => {
 
   const data = useGetPizzas();
   const navigate = useNavigate();
+  const { id } = useParams()
 
   const darkTheme = createTheme({
     palette: {
@@ -16,37 +18,49 @@ const AdministrarProductos = () => {
     }
   })
 
+  const editProducto = (id) => {
+    console.log(id)
+    navigate(`editar/${id}`);
+  };
+
+
   const deleteProducto = (id) => {
-    try {
-      axios.delete(`http://localhost:8000/api/pizzas/${id}`)
-   } catch {
-      alert("no se ha podido eliminar")
-   }
-   navigate('/cpanel')
-  }
+    Swal.fire({
+      title: 'Estas seguro?',
+      text: "No puedes revertir esto!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, eliminar!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios
+          .delete(`http://localhost:8000/api/pizzas/${id}`)
+          .then(() => {
+            Swal.fire(
+              'Eliminado!',
+              'El producto ha sido eliminado exitosamente.',
+              'success'
+            ).then(() => {
+              window.location.reload();
+            });
+          })
+          .catch((error) => {
+            alert('No se ha podido eliminar');
+          });
+      }
+    });
+  };
   
-  const detalleProducto = (id) => {
-    try {
-      axios.get(`http://localhost:8000/api/pizza/${id}`)
-      console.log(id)
-   } catch {
-      alert("no se ha podido eliminar")
-   }
-  }
+  
+
 
   const columns = [
     {
       name:"name",
       label:"name",
     },
-    // {
-    //   name:"varients",
-    //   label:"varients"
-    // },
-    // {
-    //   name:"prices",
-    //   label:"prices"
-    // },
     {
       name:"description",
       label:"description"
@@ -64,10 +78,7 @@ const AdministrarProductos = () => {
                 <button className='btn btn-danger ms-2' onClick={() => deleteProducto(tableMeta.rowData[2])}>
                 <i className="bi bi-trash3"></i>
                 </button>
-                <button className='btn btn-danger ms-2' onClick={() => detalleProducto(tableMeta.rowData[2])}>
-                <i className="bi bi-clipboard2"></i>
-                </button>
-                <button className='btn btn-danger ms-2' onClick={() => detalleProducto(tableMeta.rowData[2])}>
+                <button className='btn btn-danger ms-2' onClick={() => editProducto(tableMeta.rowData[2])}>
                 <i className="bi bi-pencil"></i>
                 </button>
             </div>
@@ -95,7 +106,8 @@ return (
                       </div>
                     </div>
                     <div className="align-self-center">
-                      <Link to='/cpanel/adm/agregar' className='btn btn-primary m-2'>Agregar nuevo</Link>
+                      <Link to='/cpanel/adm/agregar' className='btn btn-primary'>Agregar</Link>
+                      <Link to='/cpanel/adm' className='btn btn-primary mx-2'>Volver</Link>
                     </div>
                   </div>
                 </div>

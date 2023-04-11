@@ -1,5 +1,8 @@
 import React from 'react'
 import img1 from '../../img/imgpizza1.jpg'
+import img2 from '../../img/1.jpg'
+import img3 from '../../img/3.jpg'
+import img4 from '../../img/4.webp'
 
 const Carrouselgrande = () => {
   return (
@@ -8,13 +11,16 @@ const Carrouselgrande = () => {
         <div id="carouselExampleRide" className="carousel slide" data-bs-ride="true">
           <div className="carousel-inner">
             <div className="carousel-item active">
-              <img src={img1} className="d-block w-100" alt="..."/>
+              <img src={img1} className="d-block w-100" alt="Imagen de pizza"/>
             </div>
             <div className="carousel-item">
-              <img src={img1} className="d-block w-100" alt="..."/>
+              <img src={img2} className="d-block w-100" alt="Imagen de pizza"/>
             </div>
             <div className="carousel-item">
-              <img src={img1} className="d-block w-100" alt="..."/>
+              <img src={img3} className="d-block w-100" alt="Imagen de pizza"/>
+            </div>
+            <div className="carousel-item">
+              <img src={img4} className="d-block w-100" alt="Imagen de pizza"/>
             </div>
           </div>
           <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleRide" data-bs-slide="prev">

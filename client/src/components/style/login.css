@@ -1,5 +1,8 @@
 body{
-    background-color:  #543729;
+    background-image: url("../../img/img2.png") ;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size:cover;
 }
 
 .registration-form{

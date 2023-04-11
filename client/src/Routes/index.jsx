@@ -9,13 +9,9 @@ import Home from '../screens/Home';
 import AdministrarProductos from '../screens/AdminPanel/AdministrarProductos';
 import AdministrarUsuarios from '../screens/AdminPanel/AdministrarUsuarios';
 import AdminPanel from '../screens/AdminPanel/AdminPanel';
+import ProductDetails from '../screens/AdminPanel/ProductDetails';
 import ProductosAdd from '../screens/AdminPanel/customHooks/ProductoAdd';
-
-
-import AdministrarProductos from '../screens/AdminPanel/AdministrarProductos';
-import AdministrarUsuarios from '../screens/AdminPanel/AdministrarUsuarios';
-import AdminPanel from '../screens/AdminPanel/AdminPanel';
-import Home from '../screens/Home';
+import EditarProductos from '../screens/AdminPanel/EditarProductos';
 
 
 export const  router =  createBrowserRouter([
@@ -42,17 +38,7 @@ export const  router =  createBrowserRouter([
             },
         ]
     },
-    {
-        path: '/cpanel',
-        element: <LayoutPanel />,
-        errorElement: <NotFound />,
-        children: [
-            {
-                path:'adm',
-                element: <AdminPanel />
-            },
-        ]
-    },
+
     {
         path: '/cpanel',
         element: <LayoutPanel />,
@@ -71,9 +57,18 @@ export const  router =  createBrowserRouter([
                 element: <AdministrarProductos />
             },
             {
+                path:'adm/pizza/:id',
+                element: <ProductDetails />
+            },
+            {
                 path:'adm/agregar',
                 element: <ProductosAdd />
             },
+            {
+                path:'adm/products/editar/:id',
+                element: <EditarProductos />
+            },
+           
         ]
     }
 ]);

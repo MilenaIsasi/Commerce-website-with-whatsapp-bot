@@ -1,0 +1,8 @@
+a:link, a:visited {
+text-decoration: none;
+color: black;
+}
+
+#columna:hover {
+    background-color: rgb(236, 236, 236);
+}
