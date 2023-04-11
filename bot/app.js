@@ -67,7 +67,7 @@ const flowFormulario = addKeyword(['Hola', 'Buenas','⬅️ Volver al Inicio'])
     .addAnswer('Pedido en proceso, el costo es de: *70000 Gs*.')
     .addAnswer('Puede pasar en *25 minutos*')
     .addAnswer('Agradecemos su compra 🍕!', {
-        media: 'https://scontent.fagt1-1.fna.fbcdn.net/v/t39.30808-6/301571088_401800278740628_183016692955704302_n.png?_nc_cat=105&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeFWqyYDuvN7Gf601eR1mb3grs9usfRgriauz26x9GCuJsD8YskwzNRl-B0dfZBnrQBZ_vZz-I5C8PwPab951k50&_nc_ohc=mx8DTNeR5QgAX_IEf-K&_nc_ht=scontent.fagt1-1.fna&oh=00_AfCZYppgWK2uPZmnnHV50BFH6Xq5RxqT-c-i-_TueDmUXg&oe=6420C052',
+        media: 'https://scontent.fagt1-1.fna.fbcdn.net/v/t39.30808-6/301571088_401800278740628_183016692955704302_n.png?_nc_cat=105&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeFWqyYDuvN7Gf601eR1mb3grs9usfRgriauz26x9GCuJsD8YskwzNRl-B0dfZBnrQBZ_vZz-I5C8PwPab951k50&_nc_ohc=Aw5CQEA1qp8AX9cgiAy&_nc_ht=scontent.fagt1-1.fna&oh=00_AfC0EKU52f3cUsGqpFLxo_Zq-xlC8IjeZH4N-nNcx3vU1A&oe=642AA392',
     })
 
     const flujoAgradecimiento = addKeyword('gracias').addAnswer('De Nada!')

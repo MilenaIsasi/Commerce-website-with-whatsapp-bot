@@ -7,5 +7,5 @@ module.exports = function (app){
     app.get('/getpizzas',authenticate, PizzeriaController.getpizza);
     app.get('/getallpizzas', PizzeriaController.getallpizza);
     app.delete("/api/pizzas/:id", PizzeriaController.deletePizza);
-    app.get('/api/pizza/:id',authenticate, PizzeriaController.getPizza);
-}
+    app.get('/api/pizza/:id', PizzeriaController.getOnePizza);
+    app.put('/api/pizza/:id', authenticate, PizzeriaController.updatePizza);}

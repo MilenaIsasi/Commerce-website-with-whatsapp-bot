@@ -5,7 +5,7 @@
     "main": "app.js",
     "scripts": {
         "pre-copy": "cd .. && npm run  copy.lib base-baileys-mongo",
-        "start": "node app.js"
+        "start": "set PORT=8080 && node app.js"
     },
     "keywords": [],
     "dependencies": {
