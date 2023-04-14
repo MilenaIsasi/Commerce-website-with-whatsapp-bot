@@ -13,7 +13,7 @@ const menuAPI = async () => {
       const response = await axios.get('http://localhost:8000/getallpizzas');
       const data = response.data;
       console.log(response.data.prices)
-      const menuOnline = data.map((item, i) => ({body:[`${i}. *${item.name}:* ${item.description}`, `*Precio:* ${item.prices[0].grande} Gs`].join('\n')}))
+      const menuOnline = data.map((item, i) => ({body:[`${i}. *${item.name}:* ${item.description}`, `*Precio:* ${item.prices[0].entero} Gs`].join('\n')}))
       return menuOnline;
     } catch (error) {
       console.error(error);

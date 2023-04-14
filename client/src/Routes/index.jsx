@@ -6,12 +6,13 @@ import Layout from '../layouts/Layout';
 import LayoutPanel from '../layouts/LayoutPanel';
 import AddCarrito from '../screens/AddCarrito';
 import Home from '../screens/Home';
-import AdministrarProductos from '../screens/AdminPanel/AdministrarProductos';
+import AdministrarProductos from '../screens/AdminPanel/Pizzas';
 import AdministrarUsuarios from '../screens/AdminPanel/AdministrarUsuarios';
 import AdminPanel from '../screens/AdminPanel/AdminPanel';
-import ProductDetails from '../screens/AdminPanel/ProductDetails';
-import ProductosAdd from '../screens/AdminPanel/customHooks/ProductoAdd';
-import EditarProductos from '../screens/AdminPanel/EditarProductos';
+import PizzasAdd from '../screens/AdminPanel/pizzas/PizzasAdd';
+import PizzaEditar from '../screens/AdminPanel/pizzas/PizzasEditar';
+import PizzaDetalle from '../screens/AdminPanel/pizzas/PizzaDetalle';
+
 
 
 export const  router =  createBrowserRouter([
@@ -57,16 +58,16 @@ export const  router =  createBrowserRouter([
                 element: <AdministrarProductos />
             },
             {
-                path:'adm/pizza/:id',
-                element: <ProductDetails />
+                path:'adm/products/pizza/:id',
+                element: <PizzaDetalle />
             },
             {
                 path:'adm/agregar',
-                element: <ProductosAdd />
+                element: <PizzasAdd />
             },
             {
                 path:'adm/products/editar/:id',
-                element: <EditarProductos />
+                element: <PizzaEditar />
             },
            
         ]

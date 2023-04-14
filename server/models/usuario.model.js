@@ -21,10 +21,14 @@ const UsuarioSchema = new mongoose.Schema({
         }
     },
     password: {
-        type: String,
-        required: [true, "password is required"],
-        minglength: [3, "Password must be 8 characters or longer"]
-    },
+      type: String,
+      required: [true, "password is required"],
+      minglength: [3, "Password must be 8 characters or longer"]
+  },
+  rol: {
+    type: String,
+    required: [true],
+},
 
 },  { timestamps: true });
 

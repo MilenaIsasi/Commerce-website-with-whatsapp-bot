@@ -7,7 +7,7 @@ import "./style/catalogo.css";
 
 export const Pizza = ({ pizza }) => {
   const [quantify, setQuantify] = useState(1);
-  const [varient, setVarient] = useState("personal");
+  const [varient, setVarient] = useState("entero");
 
   const { products, setProducts } = useContext(CartContext);
 
@@ -91,8 +91,8 @@ export const Pizza = ({ pizza }) => {
         </div>
 
         <div className="flex-container">
-          <div className="w-100 m-1">
-            <p>Tamaño</p>
+          <div className="w-100 m-2">
+            <h2>Opciones</h2>
             <select
               className="form-select"
               value={varient}
@@ -109,8 +109,8 @@ export const Pizza = ({ pizza }) => {
               })}
             </select>
           </div>
-          <div className="w-100 m-1">
-            <p>Cantidad</p>
+          <div className="w-100 m-2">
+            <h2>Cantidad</h2>
             <select
               className="form-select"
               value={quantify}
