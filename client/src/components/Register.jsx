@@ -27,6 +27,7 @@ const Register = () => {
       email: "",
       password: "",
       confirmPassword:"",
+      rol:"cliente"
     }, validationSchema,
     onSubmit: (values) => {
       console.log(values);

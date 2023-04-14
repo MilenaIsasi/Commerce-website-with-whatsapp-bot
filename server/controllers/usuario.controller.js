@@ -54,7 +54,8 @@ module.exports.login = async (request, response) => {
             const newJWT = jwt.sign({
                 _id: usuario._id,
                 nombre: `${usuario.firstName} ${usuario.lastName}`,
-                email: usuario.email
+                email: usuario.email,
+                rol: usuario.rol,
             }, secret)
 
             response.cookie("user_token", newJWT, { 
@@ -63,7 +64,7 @@ module.exports.login = async (request, response) => {
             response.json({msg: "Logeado Correctamente"});
         }
         else
-            return response.status(403).json({ msg: 'El password no existe' });
+            return response.status(403).json({ msg: 'Contraseña incorrecta' });
             
     } catch (error){
         response.status(400);

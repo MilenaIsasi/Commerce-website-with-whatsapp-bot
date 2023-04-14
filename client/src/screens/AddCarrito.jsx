@@ -5,6 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Modal from "react-bootstrap/Modal";
 
 
 const AddCarrito = () => {
@@ -12,6 +13,10 @@ const AddCarrito = () => {
   const [valid, setValid]=useState(false);
   const { products, setProducts } = useContext(CartContext);
   const [total, setTotal] = useState([]);
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const [pizza, setpizza] = useState("")
 
   const notify = () => toast.success(`Comprado con exito`, {
     position: "bottom-right",
@@ -140,9 +145,27 @@ useEffect(() => {
             )}
             {products.length ? <h3 className="carritoletra">Total: {total + " Gs"}</h3> : null}
             {products.length ? (
-              <button onClick={comprarPizzas} className="procesarcompra" >Procesar compra</button>
+              <button onClick={handleShow} className="procesarcompra" >Procesar compra</button>
             ) : null}
           </div>
+          <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Titulo</Modal.Title>
+        </Modal.Header>
+
+        <Modal.Body>
+            <div className="container" style={{display: "flex", justifyContent: "center"}}>
+
+            <p className="mx-2"></p>
+            </div>
+        </Modal.Body>
+
+        <Modal.Footer>
+          <button className="btn" onClick={handleClose}>
+            CERRAR
+          </button>
+        </Modal.Footer>
+      </Modal>
         </div>
       </div>
     </div>

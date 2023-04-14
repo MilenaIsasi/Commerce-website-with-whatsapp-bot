@@ -13,11 +13,11 @@ module.exports.authenticate = (req, res, next) => {
     });
 }
 module.exports.admin = (req, res, next) => {
-    jwt.verify(req.cookies.usertoken, secret_key, (err, payload) => {
-
+    jwt.verify(req.cookies.user_token, secret, (err, payload) => {
+        console.log(payload)
         if (err) {
             res.status(401).json({ verified: false });
-        } else if (payload._id !== '640a6d825867caf4327a1727') {
+        } else if (payload.rol !== 'admin') {
             res.status(401).json({ verified: false });
         }
         else {
