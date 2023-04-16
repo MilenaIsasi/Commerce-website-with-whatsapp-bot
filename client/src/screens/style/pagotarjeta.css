@@ -1,0 +1,82 @@
+.row{
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    display: flex;
+    margin-top: calc(-1 * var(--bs-gutter-y));
+    margin-right: calc(-.5 * var(--bs-gutter-x));
+    margin-left: calc(-.5 * var(--bs-gutter-x));
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: stretch;
+    justify-content: center;
+}
+.contenedor_de_imagenestarjeta{
+    display: flex;
+}
+.card {
+    margin: 10px 0px;
+    padding: 10px 0px;
+    border-radius: 20px;
+    border: none;
+    box-shadow: 1px 5px 10px 1px rgba(0,0,0,0.2);
+
+}
+.total_a_pagar{
+    text-align: center;
+    color: red;
+}
+
+input, textarea {
+    background-color: #F3E5F5;
+    width: 100px;
+    border-radius: 5px !important;
+    box-sizing: border-box;
+    border: 1px solid #F3E5F5;
+    font-size: 15px !important;
+    color: #000 !important;
+    font-weight: 300;
+}
+
+
+
+.imagendelogotarjeta {
+    width: 100px;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid #ed840b !important;
+    margin: 10px 20px 10px 0px;
+    cursor: pointer;
+    box-shadow: 1px 5px 10px 1px rgba(188, 33, 33, 0.2);
+}
+
+
+.gray .imagendelogotarjeta {
+    box-shadow: none;
+}
+
+#btn_Checkout{
+    text-align: center;
+    width: 150px;
+    display: flex;
+    justify-content: center;
+}
+
+
+.btn-blue {
+    border: none;
+    border-radius: 10px;
+    background-color: #f16a0bfa;
+    color: #fff !important;
+    padding: 8px 15px;
+    margin: 20px 0px;
+    cursor: pointer;
+}
+
+.btn-blue:hover {
+    background-color: #e28127;
+    color: #000 !important;
+}
+#indicaciones{
+    height: 100px;
+}
