@@ -11,7 +11,7 @@ const AdministrarUsuarios = () => {
   const navigate = useNavigate();
 
   const darkTheme = createTheme({
-    palette: {
+    palette: { 
         mode:'dark'
     }
   })

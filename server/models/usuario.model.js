@@ -29,6 +29,10 @@ const UsuarioSchema = new mongoose.Schema({
     type: String,
     required: [true],
 },
+  // isVerified : {
+  //   type: Boolean, default: false
+  // },
+  // emailToken : {type: String},
 
 },  { timestamps: true });
 
