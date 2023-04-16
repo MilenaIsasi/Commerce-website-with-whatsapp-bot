@@ -1,25 +1,18 @@
-.navbar-expand-lg .navbar-collapse {
-    display: flex!important;
-    flex-basis: auto;
-    justify-content: flex-end;
+.navbar {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
 
-}
+  .procesarcompra {
+    color: aqua;
+  }
 
-.navbar{
-    background-color: #212529;
-}
-
-#navbarnombre{
-    color: white !important;
-
-}
-
-#sesion{
-    font-size:30px;
+  #carrito {
+    font-size: 25px;
     color: orange;
-}
+  }
 
-#carrito{
-    font-size:30px;
-    color: orange;
-}
+  
+  #carrito:hover {
+    font-size: 25px;
+    color: rgb(255, 255, 255);
+  }

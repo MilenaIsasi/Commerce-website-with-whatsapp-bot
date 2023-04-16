@@ -12,16 +12,26 @@ module.exports.authenticate = (req, res, next) => {
         }
     });
 }
+
 module.exports.admin = (req, res, next) => {
-    jwt.verify(req.cookies.user_token, secret, (err, payload) => {
-        console.log(payload)
-        if (err) {
-            res.status(401).json({ verified: false });
-        } else if (payload.rol !== 'admin') {
-            res.status(401).json({ verified: false });
-        }
-        else {
-            next();
-        }
-    });
-}
+  const token = req.cookies.user_token;
+  if (!token) {
+    res.status(401).json({ verified: false });
+    return;
+  }
+
+  jwt.verify(token, secret, (err, payload) => {
+    if (err) {
+      res.status(401).json({ verified: false });
+      return;
+    }
+
+    if (payload.rol !== 'admin') {
+      res.status(401).json({ verified: false });
+      return;
+    }
+
+    req.user = payload; // Agregamos el payload a la solicitud para futuros usos
+    next();
+  });
+};

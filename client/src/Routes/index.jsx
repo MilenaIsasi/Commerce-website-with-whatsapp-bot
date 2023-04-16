@@ -16,13 +16,13 @@ import PizzaDetalle from '../screens/AdminPanel/pizzas/PizzaDetalle';
 
 
 export const  router =  createBrowserRouter([
-    {   path: '/',
-        index: true,
-        element: <FormLogin />,
-    },
     {
         path:'register',
         element: <Register />
+    },
+    {
+        path:'login',
+        element: <FormLogin />
     },
     {
         path: '/',
@@ -30,12 +30,13 @@ export const  router =  createBrowserRouter([
         errorElement: <NotFound />,
         children: [
             {
-                path:'add',
-                element: <AddCarrito />
+                path:'/',
+                index: true,
+                element: <Home />
             },
             {
-                path:'home',
-                element: <Home />
+                path:'add',
+                element: <AddCarrito />
             },
         ]
     },
