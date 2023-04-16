@@ -6,8 +6,10 @@ import { Navbar } from '../components/Navbar'
 const Layout = () => {
     return (
     <>
-        <Navbar />
-        <div className="container mt-5">
+    <div className='mb-5'>
+    <Navbar />
+    </div>
+        <div className="container" style={{marginTop:"50px"}}>
             <Outlet />
         </div>
     </>

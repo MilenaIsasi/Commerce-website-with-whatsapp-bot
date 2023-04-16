@@ -16,7 +16,6 @@ const AddCarrito = () => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const [pizza, setpizza] = useState("")
 
   const notify = () => toast.success(`Comprado con exito`, {
     position: "bottom-right",
@@ -68,7 +67,7 @@ useEffect(() => {
 }, [])
 
   return (
-    <div>
+    <div className="container-carrito">
       <div>
         <ToastContainer
           position="bottom-right"
@@ -83,12 +82,12 @@ useEffect(() => {
           theme="light"
         />
       </div>
-      <div className="col-md-8 cart" id="contenedor" >
+      <div className="col-md-8 cart p-5" id="contenedor" >
         <div className="title">
           <div className="row">
             <div className="col">
               <h4 className="carritoletra">
-                <p>Mis Pedidos</p>
+                Mis Pedidos
               </h4>
             </div>
             <div className="col align-self-center text-right text-muted"></div>
@@ -110,10 +109,10 @@ useEffect(() => {
                       <div className="py-2 text-uppercase">Tamaño</div>
                     </th>
                     <th scope="col" className="border-0">
-                      <div className="py-2 text-uppercase">Price</div>
+                      <div className="py-2 text-uppercase">Precio</div>
                     </th>
                     <th scope="col" className="border-0">
-                      <div className="py-2 text-uppercase">Remove</div>
+                      <div className="py-2 text-uppercase">Acciones</div>
                     </th>
                   </tr>
                 </thead>
@@ -145,7 +144,7 @@ useEffect(() => {
             )}
             {products.length ? <h3 className="carritoletra">Total: {total + " Gs"}</h3> : null}
             {products.length ? (
-              <button onClick={handleShow} className="procesarcompra" >Procesar compra</button>
+              <button onClick={handleShow} className="btn mt-3" >Procesar compra</button>
             ) : null}
           </div>
           <Modal show={show} onHide={handleClose}>
@@ -156,7 +155,7 @@ useEffect(() => {
         <Modal.Body>
             <div className="container" style={{display: "flex", justifyContent: "center"}}>
 
-            <p className="mx-2"></p>
+            <p className="mx-2">{products[0].name}</p>
             </div>
         </Modal.Body>
 

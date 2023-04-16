@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import { useFormik } from "formik";
 import { Link, useNavigate } from "react-router-dom";
-import './style/login.css'
+import "./style/login.css";
 import axios from "axios";
+import Swal from "sweetalert2";
 
-const FormLogin = () => {
-
+const FormLogin = ({ setLoggedIn }) => {
   const navigate = useNavigate();
-
   const [errorMessage, setErrorMessage] = useState("");
+  const goHome = () =>{
+    navigate("/")
+  };
 
   const onSubmit = async (values) => {
     try {
@@ -17,23 +19,62 @@ const FormLogin = () => {
         values,
         { withCredentials: true }
       );
-      console.log(response);
-      if (response.data === 200) {
-        console.log(response);
+      setLoggedIn(true);
+      console.log(response)
+      if (response.status === 200) {
+        console.log("Ingreso correcto");
+  
+        try {
+          const roleResponse = await axios.get(
+            "http://localhost:8000/api/admin",
+            { withCredentials: true }
+          );
+  
+          console.log(roleResponse)
+  
+          console.log("Eres Admin")
+          console.log(roleResponse.data.rol)
+          // Verificar el rol del usuario
+          if (roleResponse.data.rol === "admin") {
+            navigate('/cpanel/adm');
+          } else {
+            navigate('/');
+          }
+        } catch (error) {
+          if (error.response && error.response.status === 401) {
+            navigate('/');
+          } else {
+            Swal.fire({
+              title: 'Error',
+              text: error.message,
+              icon: 'error',
+              timer: 2000,
+              timerProgressBar: true,
+            });
+            console.error(error);
+          }
+        }
       } else {
-        navigate("/home");
+        Swal.fire({
+          title: 'Error',
+          text: 'El inicio de sesión falló. Por favor, inténtalo de nuevo.',
+          icon: 'error',
+          timer: 2000,
+          timerProgressBar: true,
+        });
       }
     } catch (error) {
-      if (error.response.status === 400) {
-        setErrorMessage(" * Datos inválidos");
-      } else {
-        setErrorMessage(" * Datos inválidos");
-      }
+      Swal.fire({
+        title: 'Error',
+        text: error.message,
+        icon: 'error',
+        timer: 2000,
+        timerProgressBar: true,
+      });
       console.error(error);
     }
   };
-
-
+  
   const { handleSubmit, handleChange } = useFormik({
     initialValues: {
       email: "",
@@ -42,64 +83,50 @@ const FormLogin = () => {
     onSubmit,
   });
 
+
   return (
-    <div className="registration-form">
-      <form onSubmit={handleSubmit}>
-        <div className="form-icon">
-          <span>
-          <i className="bi bi-person-circle"></i>
-          </span>
-        </div>
-        <div className="form-group">
-          <input
-          className="form-control item" 
-          id="email"
-            type="email"
-            placeholder="email"
-            name="email"
-            onChange={handleChange}
-          />
-        </div>
-        <div className="form-group">
-          <input
-            className="form-control item" 
-            id="password"
-            type="password"
-            placeholder="password"
-            name="password"
-            onChange={handleChange}
-          />
-                  {errorMessage && <p className="text-danger">{errorMessage}</p>}
-        </div>
-        
-        <div className="form-group">
-          <button type="submit" className="btn btn-block create-account mx-3">
-            Iniciar Sesion
-          </button>
-          <Link
-            type="submit"
-            className="btn btn-block create-account"
-            to="/register"
-          >
-            Registrarse
-          </Link>
-        </div>
-        
-      </form>
-      <div className="social-media">
-        <h5>Seguinos en nuestras Redes Sociales!</h5>
-        <div className="social-icons">
-          <Link to='/'>
-          <i className="bi bi-facebook"></i>
-          </Link>
-          <Link to='/'>
-          <i className="bi bi-instagram"></i>
-          </Link>
-          <Link to='/'>
-          <i className="bi bi-whatsapp"></i>
-          </Link>
-        </div>
-      </div>
+    <div className="registration-form" style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
+
+        <form onSubmit={handleSubmit} style={{display: "flex", justifyContent: "center", alignItems: "center", flexDirection:"column"}}>
+          <div className="form-group">
+            <input
+              className="form-control item"
+              id="email"
+              type="email"
+              placeholder="Email"
+              name="email"
+              onChange={handleChange}
+            />
+          </div>
+          <div className="form-group">
+            <input
+              className="form-control item"
+              id="password"
+              type="password"
+              placeholder="Contraseña"
+              name="password"
+              onChange={handleChange}
+            />
+            {errorMessage && (
+              <p className="text-danger">{errorMessage}</p>
+            )}
+          </div>
+          <div style={{display: "flex", justifyContent:"center", alignItems: "center"}}>
+          <button
+              type="submit"
+              className="btn btn-block create-account mx-1"
+              style={{display: "flex", justifyContent: "center", alignItems: "center"}}
+            >
+              Iniciar Sesion
+            </button>
+            <button className="btn btn-block create-account" onClick={goHome}> Volver </button>
+          </div>
+          <div className="form-group mt-4" >
+            <div style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
+            <span> No tienes una ?<Link style={{color:"orange"}} to={'/register'} className=""> CREAR CUENTA </Link> </span>
+            </div>
+          </div>
+        </form>
     </div>
   );
 };
