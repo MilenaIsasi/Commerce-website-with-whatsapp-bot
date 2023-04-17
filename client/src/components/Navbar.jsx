@@ -72,9 +72,9 @@ export const Navbar = () => {
               </li>
               <li className="nav-item mt-2">
                 {isLoggin ? (
-                  <Link className="btn" to={'/login'}>Iniciar sesión</Link>
-                ) : (
                   <SalirBtn />
+                ) : (
+                  <Link className="btn" to={'/login'}>Iniciar sesión</Link>
                 )}
               </li>
             </ul>
