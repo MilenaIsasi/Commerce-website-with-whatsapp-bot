@@ -6,15 +6,18 @@ import { RouterProvider } from 'react-router-dom';
 import {router} from './Routes'
 import CartContextProvider from './context/CartContex'
 import {CookiesProvider} from 'react-cookie'
+import AuthContextProvider from './context/AuthContext';
 
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-        <CartContextProvider>
-    <RouterProvider router={router}>
+  <AuthContextProvider>
+    <CartContextProvider>
+      <RouterProvider router={router}>
         <CookiesProvider>
-            <App/>
+          <App />
         </CookiesProvider>
-    </RouterProvider>
+      </RouterProvider>
     </CartContextProvider>
+  </AuthContextProvider>
 );

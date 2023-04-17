@@ -227,7 +227,6 @@ useEffect(() => {
               <button onClick={handleShow} className="btn mt-3" >Procesar compra</button>
 
             ) : null}
-            
           </div>
           
               
@@ -239,6 +238,7 @@ useEffect(() => {
           <Modal.Body>
               <div className="container" style={{display: "flex", justifyContent: "center"}}>
                 <form className="form" onSubmit={gestorDefunciones}>      
+
                   <div style={{
                     display: "flex",
                     flexWrap: "wrap",
@@ -253,8 +253,6 @@ useEffect(() => {
                       <h2>{product.name}</h2>
                     ))}
                   </div>
-
-                  
                   <input 
                   name="name" 
                   type="text" 

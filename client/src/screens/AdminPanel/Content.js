@@ -1,8 +1,10 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import './styles/content.css'
+import axios from 'axios';
 
 export default function Content() {
+
   return (
     <div className='container text-center' style={{width: "250px"}}>
       <div className='contenedor'>
@@ -20,7 +22,7 @@ export default function Content() {
           </div>
         </Link>
 
-        <Link  className="col" to={'/home'}>
+        <Link  className="col" to={'/'}>
           <div className="card mt-2" id='columna'>
             <div className="card-body">Volver a la pagina de inicio</div>
           </div>

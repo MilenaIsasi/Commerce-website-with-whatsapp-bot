@@ -11,5 +11,8 @@ module.exports = function (app){
     app.get('/api/admin', admin, (req, res) => {
         res.status(200).json(req.user);
       });
+      app.get('/api/userauth', authenticate, (req, res) => {
+        res.status(200).json(req.usuario);
+      });
     app.delete("/api/usuario/:id", UsuarioController.deleteUser);
 }

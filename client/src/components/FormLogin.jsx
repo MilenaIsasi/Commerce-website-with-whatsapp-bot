@@ -4,13 +4,21 @@ import { Link, useNavigate } from "react-router-dom";
 import "./style/login.css";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { useContext, useEffect } from "react";
+import { AuthContext } from "../context/AuthContext";
 
-const FormLogin = ({ setLoggedIn }) => {
+const FormLogin = () => {
+
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState("");
+  const { isLoggin, toggleLogin } = useContext(AuthContext);
   const goHome = () =>{
     navigate("/")
   };
+
+const changeState = () => {
+  toggleLogin();
+};
 
   const onSubmit = async (values) => {
     try {
@@ -19,10 +27,15 @@ const FormLogin = ({ setLoggedIn }) => {
         values,
         { withCredentials: true }
       );
-      setLoggedIn(true);
       console.log(response)
       if (response.status === 200) {
-        console.log("Ingreso correcto");
+        Swal.fire({
+          title: '¡Inicio de sesión exitoso!',
+          icon: 'success',
+          timer: 2000,
+          timerProgressBar: true,
+        });
+        changeState();
   
         try {
           const roleResponse = await axios.get(
@@ -31,8 +44,7 @@ const FormLogin = ({ setLoggedIn }) => {
           );
   
           console.log(roleResponse)
-  
-          console.log("Eres Admin")
+
           console.log(roleResponse.data.rol)
           // Verificar el rol del usuario
           if (roleResponse.data.rol === "admin") {

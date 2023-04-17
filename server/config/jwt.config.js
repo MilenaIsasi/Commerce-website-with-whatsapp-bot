@@ -31,7 +31,7 @@ module.exports.admin = (req, res, next) => {
       return;
     }
 
-    req.user = payload; // Agregamos el payload a la solicitud para futuros usos
+    req.user = payload; 
     next();
   });
 };
