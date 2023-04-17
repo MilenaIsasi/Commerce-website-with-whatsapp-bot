@@ -10,15 +10,26 @@ const MONGO_DB_NAME = 'pizzeria'
 
 const menuAPI = async () => {
     try {
-      const response = await axios.get('http://localhost:8000/getallpizzas');
-      const data = response.data;
-      console.log(response.data.prices)
+    const response = await axios.get('http://localhost:8000/getallpizzas');
+    const data = response.data;
+    console.log(response.data.prices)
       const menuOnline = data.map((item, i) => ({body:[`${i}. *${item.name}:* ${item.description}`, `*Precio:* ${item.prices[0].entero} Gs`].join('\n')}))
-      return menuOnline;
+    return menuOnline;
     } catch (error) {
-      console.error(error);
+    console.error(error);
     }
-  };
+};
+
+const PreciosApi = async () =>{
+    try {
+        const respuesta = await axios.get('http://localhost:8000/getallpizzas');
+        const data = respuesta.data;
+            const precioOnline = data.map((item, i) => (`*Precio:* ${item.prices[i].entero} Gs` ))
+            return precioOnline;
+    } catch (error) {
+    console.error(error);
+    }
+}
 
 
 let nombre;
@@ -30,8 +41,8 @@ const flowFormulario = addKeyword(['Hola', 'Buenas','⬅️ Volver al Inicio'])
 
         async (ctx, { flowDynamic, endFlow }) => {
             if (ctx.body == '❌ Cancelar solicitud')
-             return endFlow({body: '❌ Su solicitud ha sido cancelada ❌',    
-                 buttons:[{body:'⬅️ Volver al Inicio' }]
+            return endFlow({body: '❌ Su solicitud ha sido cancelada ❌',    
+                buttons:[{body:'⬅️ Volver al Inicio' }]
             })
 
             nombre = ctx.body
@@ -64,10 +75,13 @@ const flowFormulario = addKeyword(['Hola', 'Buenas','⬅️ Volver al Inicio'])
     })
 
     const flujoCompra = addKeyword(['1', '2', '3', '4','5', '6', '7'])
-    .addAnswer('Pedido en proceso, el costo es de: *70000 Gs*.')
-    .addAnswer('Puede pasar en *25 minutos*')
-    .addAnswer('Agradecemos su compra 🍕!', {
-        media: 'https://scontent.fagt1-1.fna.fbcdn.net/v/t39.30808-6/301571088_401800278740628_183016692955704302_n.png?_nc_cat=105&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeFWqyYDuvN7Gf601eR1mb3grs9usfRgriauz26x9GCuJsD8YskwzNRl-B0dfZBnrQBZ_vZz-I5C8PwPab951k50&_nc_ohc=Aw5CQEA1qp8AX9cgiAy&_nc_ht=scontent.fagt1-1.fna&oh=00_AfC0EKU52f3cUsGqpFLxo_Zq-xlC8IjeZH4N-nNcx3vU1A&oe=642AA392',
+    .addAnswer( 'Puede pasar en *25 minutos*', {delay:1700} )
+    .addAnswer( 'Agradecemos su compra 🍕!' , {delay:1702}, {
+        media: 'https://uploads-ssl.webflow.com/622e60b302e90ab076a83e61/6238fbb0df32e5098a0918ee_Pizzabot_ShareBanner.png'
+    }) 
+    .addAnswer('El total a abonar es de: ',  async (ctx,{flowDynamic}) => {
+        const precioOnline = await PreciosApi()
+        flowDynamic(precioOnline)
     })
 
     const flujoAgradecimiento = addKeyword('gracias').addAnswer('De Nada!')

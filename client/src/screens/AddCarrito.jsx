@@ -208,9 +208,6 @@ useEffect(() => {
             ) : null}
             {products.length ? (
               <button onClick={limpiarCarrito} className="btn-block btn-blue m-lg-3" >Vaciar Carrito</button>
-
-              <button onClick={handleShow} className="btn mt-3" >Procesar compra</button>
-
             ) : null}
           </div>
           
