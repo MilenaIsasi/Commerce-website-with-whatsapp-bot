@@ -12,6 +12,7 @@ import AdminPanel from '../screens/AdminPanel/AdminPanel';
 import PizzasAdd from '../screens/AdminPanel/pizzas/PizzasAdd';
 import PizzaEditar from '../screens/AdminPanel/pizzas/PizzasEditar';
 import PizzaDetalle from '../screens/AdminPanel/pizzas/PizzaDetalle';
+import UsuarioEditar from '../screens/AdminPanel/users/UsuarioEditar';
 
 
 
@@ -70,7 +71,10 @@ export const  router =  createBrowserRouter([
                 path:'adm/products/editar/:id',
                 element: <PizzaEditar />
             },
-           
+            {
+                path:'adm/users/editar/:id',
+                element: <UsuarioEditar />
+            },
         ]
     }
 ]);

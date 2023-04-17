@@ -15,4 +15,5 @@ module.exports = function (app){
         res.status(200).json(req.usuario);
       });
     app.delete("/api/usuario/:id", UsuarioController.deleteUser);
-}
+    app.put('/api/usuario/:id', admin, UsuarioController.updateUser);
+  }
