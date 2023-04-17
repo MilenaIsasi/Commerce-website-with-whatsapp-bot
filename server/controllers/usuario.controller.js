@@ -3,10 +3,6 @@ const { response } = require('express');
 const { Usuario } = require("../models/usuario.model")
 const jwt = require("jsonwebtoken");
 
-
-//CREAR USUARIO
-
-
 module.exports.createUser = async (request, response) => {
   try {
     const { email } = request.body;
@@ -37,8 +33,6 @@ module.exports.getUsuario = async (request, response)=>{
 }
 
 
-//ENTRAR EN SESION
-
 module.exports.login = async (request, response) => {
     const {email, password} = request.body
     try {
@@ -61,7 +55,7 @@ module.exports.login = async (request, response) => {
             response.cookie("user_token", newJWT, { 
                 httpOnly: true 
             })
-            response.json({msg: "Logeado Correctamente"});
+            response.json({usuario});
         }
         else
             return response.status(403).json({ msg: 'Contraseña incorrecta' });
@@ -72,10 +66,9 @@ module.exports.login = async (request, response) => {
     }
 
 }
-// ESTE ES PARA TODOS LOS USUARIOS
+
 module.exports.getAllUsuarios = async (request, response) =>{
     try {
-        console.log(request.usuario);
         const usuarios = await Usuario.find({});
         response.json(usuarios);
     } catch (error) {

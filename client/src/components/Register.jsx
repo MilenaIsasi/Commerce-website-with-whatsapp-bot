@@ -65,20 +65,15 @@ const Register = () => {
             pauseOnHover
             theme="light"/>
         </div>
-    <div className="registration-form">
+    <div className="registration-form" style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
       <form onSubmit={handleSubmit}>
-        <div className="form-icon">
-          <span>
-            <i className="bi bi-person-circle"></i>
-          </span>
-        </div>
         <div className="form-group">
         {errors.name ? <div className="error-message" style={{color:"red"}}>{errors.name}</div> : null}
           <input
             className="form-control item"
             id="name"
             type="name"
-            placeholder="Name"
+            placeholder="Nombre"
             name="name"
             onChange={handleChange}
           />
@@ -90,7 +85,7 @@ const Register = () => {
             className="form-control item"
             id="lastName"
             type="lastName"
-            placeholder="Last Name"
+            placeholder="Apellido"
             name="lastName"
             onChange={handleChange}
           />
@@ -114,7 +109,7 @@ const Register = () => {
             className="form-control item"
             id="password"
             type="password"
-            placeholder="Password"
+            placeholder="Contraseña"
             name="password"
             onChange={handleChange}
           />
@@ -125,7 +120,7 @@ const Register = () => {
             className="form-control item"
             id="confirmPassword"
             type="password"
-            placeholder="Confirm Password"
+            placeholder="Confirmar contraseña"
             name="confirmPassword"
             onChange={handleChange}
           />
@@ -137,26 +132,12 @@ const Register = () => {
           <Link
             type="submit"
             className="btn btn-block create-account mx-2"
-            to="/"
+            to="/login"
           >
             Volver
           </Link>
         </div>
       </form>
-      <div className="social-media">
-        <h5>Seguinos en nuestras Redes Sociales!</h5>
-        <div className="social-icons">
-          <Link to="/">
-            <i className="bi bi-facebook"></i>
-          </Link>
-          <Link to="/">
-            <i className="bi bi-instagram"></i>
-          </Link>
-          <Link to="/">
-            <i className="bi bi-whatsapp"></i>
-          </Link>
-        </div>
-      </div>
     </div>
     </>
   );

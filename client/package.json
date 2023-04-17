@@ -19,6 +19,7 @@
     "cdbreact": "^1.5.9",
     "context": "^3.0.5",
     "formik": "^2.2.9",
+    "js-cookie": "^3.0.1",
     "mdb-react-ui-kit": "^5.1.0",
     "mdb-ui-kit": "^6.2.0",
     "mui-datatables": "^4.3.0",
@@ -33,6 +34,7 @@
     "react-toastify": "^9.1.1",
     "sweetalert2": "^11.7.3",
     "sweetalert2-react-content": "^5.0.7",
+    "universal-cookie": "^4.0.4",
     "web-vitals": "^2.1.4",
     "yup": "^1.0.2"
   },

@@ -1,9 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import { CartContext } from "../context/CartContex";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./style/catalogo.css";
+import Cookies from 'universal-cookie';
 
 export const Pizza = ({ pizza }) => {
   const [quantify, setQuantify] = useState(1);

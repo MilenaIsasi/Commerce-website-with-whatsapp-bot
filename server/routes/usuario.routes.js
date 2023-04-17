@@ -8,6 +8,8 @@ module.exports = function (app){
     app.get('/api/usuarios/:id', authenticate, UsuarioController.getUsuario);
     app.post('/api/usuario/login', UsuarioController.login);
     app.get('/api/usuarios', admin, UsuarioController.getAllUsuarios);
-    app.get("/api/admin", admin, (req, res) => { res.status(200).json({}) })
+    app.get('/api/admin', admin, (req, res) => {
+        res.status(200).json(req.user);
+      });
     app.delete("/api/usuario/:id", UsuarioController.deleteUser);
 }

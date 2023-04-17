@@ -12,6 +12,13 @@
     
 }
 
+.container-carrito{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 80px;
+}
+
 .carritoletra{
     color: white !important;
     text-align: center;
