@@ -20,8 +20,6 @@ const AddCarrito = () => {
   const { products, setProducts } = useContext(CartContext);
   const [total, setTotal] = useState([]);
   const [show, setShow] = useState(false);
-  const [pizza, setpizza] = useState("");
-
 
 //     ENVIAR AL CORREO!!!! 
   const [pedido, setPedido] = useState('')
@@ -43,9 +41,11 @@ const AddCarrito = () => {
         return;
       }
 
+
       const templatePrams = {
+      
         from_name: name,
-        from_pedido: products[0].name + ' , '+ products[1].name , 
+        from_pedido: pedido, 
         from_email: email,
         from_indicaciones: indicaciones,
       }
@@ -65,8 +65,19 @@ const AddCarrito = () => {
       })
     }
 
+    useEffect(() => {
+      // Obtener un arreglo con los nombres de los productos
+      const productNames = products.map(product => product.name);
+    
+      console.log(productNames)
 
+        // Obtener un string con los nombres de los productos separados por comas
+  const productNamesString = productNames.join(', ');
 
+  setPedido(` ${productNamesString}`);
+  console.log(pedido)
+
+    }, [products]);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -96,8 +107,6 @@ const AddCarrito = () => {
     localStorage.setItem("cart", JSON.stringify(prod));
   };
 
-
-  
   const limpiarCarrito = () => {
     const totalRemove = 0
     setProducts([]);
@@ -105,6 +114,7 @@ const AddCarrito = () => {
     localStorage.removeItem("cart");
     localStorage.setItem("cart", JSON.stringify([]));
   };
+
 
   const totalPizza = () => {
     let reduce = products.reduce(
@@ -114,6 +124,7 @@ const AddCarrito = () => {
     setTotal(reduce);
     console.log(total);
   }
+
 
 useEffect(() => {
   axios.get("http://localhost:8000/getpizzas", { withCredentials: true })
@@ -203,15 +214,23 @@ useEffect(() => {
                 </tbody>
               </table>
             ) : (
-              <p className="carritoletra">No existen items en el carrito</p>
+              <p className="carritoletra" id="mensaje_no_existe">No existen items en el carrito</p>
             )}
             {products.length ? <h3 className="carritoletra">Total: {total + " Gs"}</h3> : null}
             {products.length ? (
-              <button onClick={handleShow} className="btn mt-3" >Procesar compra</button>
-            ) : null}
-            <button onClick={limpiarCarrito} className="procesarcompra" >Procesar compra</button>
-          </div>
 
+              <button onClick={handleShow} className="btn-block btn-blue m-lg-2" >Procesar compra</button>
+            ) : null}
+            {products.length ? (
+              <button onClick={limpiarCarrito} className="btn-block btn-blue m-lg-3" >Vaciar Carrito</button>
+
+              <button onClick={handleShow} className="btn mt-3" >Procesar compra</button>
+
+            ) : null}
+            
+          </div>
+          
+              
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
             <Modal.Title>Titulo</Modal.Title>
@@ -220,9 +239,19 @@ useEffect(() => {
           <Modal.Body>
               <div className="container" style={{display: "flex", justifyContent: "center"}}>
                 <form className="form" onSubmit={gestorDefunciones}>      
-                  <div>
+                  <div style={{
+                    display: "flex",
+                    flexWrap: "wrap",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    flexDirection: "column",
+
+                  }}>
                     <h2> Resumen de Pedido: </h2>
-                    {/* <h2>{ products[0].name + ' , '+ products[1].name }  </h2> */}
+
+                    {products?.map((product, i) => (
+                      <h2>{product.name}</h2>
+                    ))}
                   </div>
 
                   
