@@ -20,7 +20,6 @@ const AddCarrito = () => {
   const { products, setProducts } = useContext(CartContext);
   const [total, setTotal] = useState([]);
   const [show, setShow] = useState(false);
-  const [pizza, setpizza] = useState("");
 
 
 //     ENVIAR AL CORREO!!!! 
@@ -209,7 +208,6 @@ useEffect(() => {
             {products.length ? (
               <button onClick={handleShow} className="btn mt-3" >Procesar compra</button>
             ) : null}
-            <button onClick={limpiarCarrito} className="procesarcompra" >Procesar compra</button>
           </div>
 
         <Modal show={show} onHide={handleClose}>
@@ -220,12 +218,7 @@ useEffect(() => {
           <Modal.Body>
               <div className="container" style={{display: "flex", justifyContent: "center"}}>
                 <form className="form" onSubmit={gestorDefunciones}>      
-                  <div>
-                    <h2> Resumen de Pedido: </h2>
-                    {/* <h2>{ products[0].name + ' , '+ products[1].name }  </h2> */}
-                  </div>
-
-                  
+              
                   <input 
                   name="name" 
                   type="text" 

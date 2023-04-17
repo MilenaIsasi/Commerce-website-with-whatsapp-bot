@@ -21,10 +21,6 @@ export const  router =  createBrowserRouter([
         element: <Register />
     },
     {
-        path:'login',
-        element: <FormLogin />
-    },
-    {
         path: '/',
         element: <Layout/>,
         errorElement: <NotFound />,
@@ -37,6 +33,10 @@ export const  router =  createBrowserRouter([
             {
                 path:'add',
                 element: <AddCarrito />
+            },
+            {
+                path:'login',
+                element: <FormLogin />
             },
         ]
     },
