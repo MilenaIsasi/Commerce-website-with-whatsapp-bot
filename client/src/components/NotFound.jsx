@@ -7,7 +7,7 @@ return (
     <div>
       <h1 className="display-1 fw-bold text-white">404</h1>
       <div>
-        <Link to="/home" className="btn btn-primary">
+        <Link to="/" className="btn btn-primary">
           Volver
         </Link>
       </div>

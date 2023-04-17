@@ -20,6 +20,16 @@ module.exports.createUser = async (request, response) => {
   }
 };
 
+module.exports.updateUser = async (request, response) => {
+    try {
+        const usuario = await Usuario.findOneAndUpdate({_id: request.params.id}, request.body, {new:true})
+        response.json(usuario);
+    } catch (error) {
+        response.status(400);
+        response.json(error);
+    }
+}
+
 module.exports.getUsuario = async (request, response)=>{
     try{
         const usuario = await Usuario.findOne({_id:request.params.id})
@@ -47,7 +57,7 @@ module.exports.login = async (request, response) => {
 
             const newJWT = jwt.sign({
                 _id: usuario._id,
-                nombre: `${usuario.firstName} ${usuario.lastName}`,
+                name: `${usuario.name} ${usuario.lastName}`,
                 email: usuario.email,
                 rol: usuario.rol,
             }, secret)

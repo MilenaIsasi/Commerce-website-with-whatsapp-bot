@@ -6,8 +6,9 @@ import "./style/email.css";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
+import Swal from 'sweetalert2';
 
 import emailjs from '@emailjs/browser';
 import './style/pagotarjeta.css'
@@ -18,19 +19,23 @@ const AddCarrito = () => {
   const navigate = useNavigate();
   const [valid, setValid]=useState(false);
   const { products, setProducts } = useContext(CartContext);
-  const [total, setTotal] = useState([]);
+  const [total, setTotal] = useState(0);
   const [show, setShow] = useState(false);
+  const [autenticado, setAutenticado] = useState(false);
+  const [datosUser, setDatosUser] = useState([]);
 
 //     ENVIAR AL CORREO!!!! 
-  const [pedido, setPedido] = useState('')
-  const [email, setEmail] = useState('')
-  const [name, setName] = useState('')
-  const [indicaciones, setIndicaciones] = useState('')
-
+  const [pedido, setPedido] = useState('');
+  const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
+  const [indicaciones, setIndicaciones] = useState('');
+  
 
     function gestorDefunciones(e){
       sendEmail(e)
       handleClose()
+      alert();
+
     }
 
     function sendEmail(e){
@@ -40,7 +45,6 @@ const AddCarrito = () => {
         alert('DEBE COMPLETAR TODOS LOS CAMPOS');
         return;
       }
-
 
       const templatePrams = {
       
@@ -59,10 +63,21 @@ const AddCarrito = () => {
         setIndicaciones('')
         setName('')
         limpiarCarrito('')
-
       }, (err) =>{
         console.log("ERROR", err)
       })
+    }
+
+    const alert = () =>{
+      Swal.fire({
+        icon: 'success',
+        title: 'Gracias por su compra, enviamos un resumen a su Email!',
+        showConfirmButton: false,
+        timer: 3000
+      });
+      setTimeout(() => {
+        navigate('/')
+      }, 3000)
     }
 
     useEffect(() => {
@@ -102,14 +117,13 @@ const AddCarrito = () => {
 
 
   const totalPizza = () => {
-    let reduce = products.reduce(
-      (acumulador, actual) => acumulador + actual.price,
-      0
-    );
-    setTotal(reduce);
-    console.log(total);
+    let total = 0;
+    products.map((product) => {
+      total += product.price
+      setTotal(total)
+    });
+ 
   }
-
 
 useEffect(() => {
   axios.get("http://localhost:8000/getpizzas", { withCredentials: true })
@@ -124,6 +138,27 @@ useEffect(() => {
   totalPizza();
 
 }, [])
+
+useEffect(() => {
+  axios.get('http://localhost:8000/api/userauth')
+  .then(response => {
+    if(response && response.status === 200){
+      setDatosUser(response.data)
+      setEmail(datosUser.email)
+      setName(datosUser.name)
+      setAutenticado(true);
+    } else {
+      setAutenticado(false);
+    }
+    console.log(datosUser)
+  })
+  .catch(error => {
+    setAutenticado(false);
+  });
+}, [autenticado])
+
+
+
 
   return (
     <div className="container-carrito">
@@ -144,7 +179,7 @@ useEffect(() => {
       <div className="col-md-8 cart p-5" id="contenedor" >
         <div className="title">
           <div className="row">
-            <div className="col">
+            <div className="col" style={{display: "flex", justifyContent: "space-between"}}>
               <h4 className="carritoletra">
                 Mis Pedidos
               </h4>
@@ -180,7 +215,7 @@ useEffect(() => {
                     <tr key={i}>
                       <td className="border-0 align-middle">{product.name}</td>
                       <td className="border-0 align-middle">
-                        {product.quantify}
+                        {product.quantity}
                       </td>
                       <td className="border-0 align-middle">
                         {product.varient}
@@ -202,13 +237,20 @@ useEffect(() => {
               <p className="carritoletra" id="mensaje_no_existe">No existen items en el carrito</p>
             )}
             {products.length ? <h3 className="carritoletra">Total: {total + " Gs"}</h3> : null}
-            {products.length ? (
-
+            {products.length && autenticado ? (
               <button onClick={handleShow} className="btn-block btn-blue m-lg-2" >Procesar compra</button>
             ) : null}
             {products.length ? (
               <button onClick={limpiarCarrito} className="btn-block btn-blue m-lg-3" >Vaciar Carrito</button>
+
             ) : null}
+            {!autenticado ? (
+            <div style={{display: "flex", alignItems: "center", justifyContent: "center"}}>
+              <h5 style={{color:"red", backgroundColor: "white", textAlign: "center", maxWidth: "400px"}} className="rounded">*Debe iniciar sesion para poder procesar su compra</h5>
+            </div>
+            ) : null}
+            <button className="btn-block btn-blue m-lg-2"  > <Link style={{color: "white"}} to={'/'}>Volver</Link> </button>
+            
           </div>
           
               
@@ -235,12 +277,12 @@ useEffect(() => {
                       <h2>{product.name}</h2>
                     ))}
                   </div>
-                  <input 
+                  {/* <input 
                   name="name" 
                   type="text" 
                   className="feedback-input" 
                   placeholder="Escriba su Nombre"
-                  onChange={(e) => setName(e.target.value)}
+                  onChange={(e) => setName(datosUser.name)}
                   value={name}
                   />
                   <input 
@@ -248,9 +290,9 @@ useEffect(() => {
                   type="text" 
                   className="feedback-input" 
                   placeholder="Escriba su correo"
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={(e) => setEmail(datosUser.email)}
                   value={email}
-                  />
+                  /> */}
                   <input 
                   name="indicaciones" 
                   type="text" 
