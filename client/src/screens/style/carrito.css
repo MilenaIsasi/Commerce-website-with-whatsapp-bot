@@ -14,6 +14,13 @@
 
 .carritoletra{
     color: white !important;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 35px;
+}
+#mensaje_no_existe{
+    color: red !important;
+    font-size: 30px;
 }
 
 .procesarcompra{
