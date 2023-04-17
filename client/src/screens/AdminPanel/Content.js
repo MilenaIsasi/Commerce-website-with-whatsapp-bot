@@ -2,9 +2,10 @@ import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import './styles/content.css'
 import axios from 'axios';
+import useGetUsuarios from './customHooks/useGetUsuarios';
 
 export default function Content() {
-
+  const autorizacion = useGetUsuarios();
   return (
     <div className='container text-center' style={{width: "250px"}}>
       <div className='contenedor'>

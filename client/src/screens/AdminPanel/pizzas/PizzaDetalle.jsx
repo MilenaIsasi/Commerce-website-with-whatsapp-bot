@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import axios from 'axios';
+import useGetUsuarios from '../customHooks/useGetUsuarios';
 
 const PizzaDetalle = () => {
+    const autorizacion = useGetUsuarios();
     const estilo = {
         display: 'flex', alignItems: 'center', justifyContent:'center'
     }

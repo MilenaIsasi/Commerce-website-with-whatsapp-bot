@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Swal from "sweetalert2";
 import * as Yup from "yup";
 
 const Register = () => {
@@ -39,6 +40,12 @@ const Register = () => {
             console.log(resp);
           } else {
             navigate("/");
+            Swal.fire({
+              icon: 'success',
+              title: 'Te registraste con exito, porfavor inicie sesión!',
+              showConfirmButton: false,
+              timer: 2000
+            });
           }
         })
         .catch((error) => {

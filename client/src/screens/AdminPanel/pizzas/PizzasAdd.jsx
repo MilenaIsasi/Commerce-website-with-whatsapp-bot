@@ -2,8 +2,10 @@ import React from 'react'
 import PizzaForm from '../../../components/PizzaForm'
 import axios from 'axios';
 import Swal from 'sweetalert2'
+import useGetUsuarios from '../customHooks/useGetUsuarios';
 
 const PizzasAdd = () => {
+  const autorizacion = useGetUsuarios();
   const initialValues = {
     name: "",
     image: "",

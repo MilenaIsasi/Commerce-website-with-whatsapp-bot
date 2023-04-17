@@ -5,9 +5,11 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import axios from 'axios';
 import Swal from 'sweetalert2'
+import useGetUsuarios from './customHooks/useGetUsuarios';
 
 const Pizzas = () => {
 
+  const autorizacion = useGetUsuarios();
   const data = useGetPizzas();
   const navigate = useNavigate();
   const { id } = useParams()
