@@ -82,21 +82,6 @@ const AddCarrito = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const notify = () => toast.success(`Comprado con exito`, {
-    position: "bottom-right",
-    autoClose: 3000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: "light",
-    });;
-
-  const comprarPizzas = () => {
-    setTotal(0);
-    notify();
-  } 
 
   const handleRemoveFromCart = (i) => {
     const totalRemove = products[i].price
